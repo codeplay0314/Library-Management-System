@@ -219,7 +219,7 @@ func (lib *Library) CreateTables() error {
 	result, err = lib.db.Exec(`
 		CREATE TABLE IF NOT EXISTS books (
 			id INT PRIMARY KEY,
-			ISBN VARCHAR(20) NOT NULL,
+			ISBN VARCHAR(20) NOT N	ULL,
 			title VARCHAR(100) NOT NULL,
 			author VARCHAR(30) NOT NULL,
 			status VARCHAR(20) NOT NULL,
@@ -320,22 +320,22 @@ func (lib *Library) init() error {
 }
 
 var commands = []string {
-	"Add an admin account",
-	"Add a student account",
-	"Change the status of an admin account",
-	"Change the status of a student account",
+	"Add admin accounts",
+	"Add student accounts",
+	"Change admin account status",
+	"Change student account status",
 
-	"Borrow a book",
-	"Return a book",
-	"Add a book to library",
-	"Remove a book from library",
+	"Borrow books",
+	"Return books",
+	"Add book to library",
+	"Remove book from library",
 
-	"Query info of a book in library",
+	"Search books in library",
 	"Query borrow histroy info of a student",
 	"Query all overdue books a student has borrowed",
 	"Query all books a student has borrowed and not returned yet",
-	"Check the deadline of a borrowed book",
-	"Extend the deadline of returning a book",
+	"Check the deadline of borrowed books",
+	"Extend the deadline of returning book",
 
 	"Log out",
 }
@@ -776,7 +776,7 @@ func Command_3(typ int, id string) {
 			fmt.Printf("\nto")
 			nuser = user
 			nuser.status = aim
-			nuser.info = aim + " by admin " + id + " because " + reason
+			nuser.info = "set" + aim + " by admin " + id + " because " + reason
 			nuser.show()
 			fmt.Printf("Do you confirm? (y/N)")
 			str := readLine()
@@ -789,6 +789,9 @@ func Command_3(typ int, id string) {
 			}
 			fmt.Println("\nPlease enter y/N")
 			time.Sleep(2 * time.Second)
+		}
+		if !ok {
+			continue
 		}
 
 		str := `UPDATE students SET status = ?, info = ? WHERE id = ?`
@@ -1499,7 +1502,7 @@ func Command_10(typ int, id string) {
 			continue
 		}
 
-		rows, err = lib.db.Queryx(`SELECT * FROM borrow_record WHERE stu = ?`, stu.id)
+		rows, err = lib.db.Queryx(`SELECT * FROM borrow_record WHERE stu = ? AND status = "being used"`, stu.id)
 		if err != nil {
 			fmt.Println(err.Error())
 			time.Sleep(2 * time.Second)
