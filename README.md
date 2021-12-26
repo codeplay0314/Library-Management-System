@@ -1,5 +1,5 @@
-# Course Project: Simple Library Managment System, Databases, Fudan University, Spring 2020
-项目地址 https://github.com/codeplay0314/Library-Managment-System
+# Course Project: Simple Library Management System, Databases, Fudan University, Spring 2020
+项目地址 https://github.com/codeplay0314/Library-Management-System
 
 ---
 
