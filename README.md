@@ -1,6 +1,5 @@
-# SLMS
-A Simple Library Managment System for DataBase Course 2020, Fudan  
-项目地址 https://github.com/codeplay0314/SLMS
+# Course Project: Simple Library Managment System, Databases, Fudan University, Spring 2020
+项目地址 https://github.com/codeplay0314/Library-Managment-System
 
 ---
 
@@ -806,5 +805,3 @@ You need to do(0-12):
 - books库和borrow_record在异常情况下有可能出现冲突
 - 测试大规模数据可能造成的后果
 - 代码分块
-
-太难码了！第一次写2000多行的程序
